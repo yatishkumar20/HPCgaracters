@@ -1,4 +1,4 @@
-package com.yatish.hpcharacters
+package com.yatish.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.yatish.hpcharacters.ui.theme.HPCharactersTheme
+import com.yatish.presentation.theme.HPCharactersTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

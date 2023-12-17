@@ -1,4 +1,4 @@
-package com.yatish.hpcharacters.ui.theme
+package com.yatish.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
