@@ -1,4 +1,4 @@
-package com.yatish.presentation.ui
+package com.yatish.presentation.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -22,7 +22,9 @@ fun NavigationGraph(
             AppBar(
                 title = stringResource(id = R.string.list_screen_name),
                 content = {
-                    CharacterListScreen()
+                    CharacterListScreen(onCharacterItemClick = { id, name ->
+                        navController.popBackStack()
+                    })
                 }
             )
         }

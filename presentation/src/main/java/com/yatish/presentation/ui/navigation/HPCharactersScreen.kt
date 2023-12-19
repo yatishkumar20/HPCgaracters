@@ -1,4 +1,4 @@
-package com.yatish.presentation.ui
+package com.yatish.presentation.ui.navigation
 
 sealed class HPCharactersScreen(val route: String) {
 

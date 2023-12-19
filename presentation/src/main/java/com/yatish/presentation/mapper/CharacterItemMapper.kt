@@ -10,7 +10,8 @@ class CharacterItemMapper @Inject constructor() {
         with(model) {
             CharacterItemUIModel(
                 name = name,
-                house = house
+                house = house,
+                id = id
             )
         }
 }

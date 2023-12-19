@@ -7,9 +7,9 @@ import retrofit2.http.Path
 
 interface HPCharactersAPI {
 
-    @GET("/characters")
+    @GET("/api/characters")
     suspend fun getAllCharacters(): Response<List<CharacterDTO>>
 
-    @GET("/character/{id}")
+    @GET("/api/character/{id}")
     suspend fun getCharacter(@Path("id") id: String): Response<CharacterDTO>
 }

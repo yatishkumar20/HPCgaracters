@@ -77,16 +77,6 @@ Apresentation/src/main/java/com/yatish/presentation/theme/Shape.kt,4/9/49c2be85
 C
 common/build.gradle,5/c/5c23a73f3b1be7d6214194048e5ccd4842575f5c
 l
-<data/src/main/java/com/yatish/data/remote/HPCharactersAPI.kt,b/1/b1af05bc49b675668713d3fa703b52f12bd6b724
-l
 <app/src/main/java/com/yatish/hpcharacters/HPCharactersApp.kt,0/d/0d420778ca8c4bb515336e8aee9b25eea51ebc1b
-h
-8data/src/main/java/com/yatish/data/remote/dto/WandDTO.kt,b/0/b0002aadeffb1924f70920bef63aec2e45d02185
 p
 @presentation/src/main/java/com/yatish/presentation/theme/Type.kt,8/a/8a4a3504928e9bf919b47a40f36219a266e73c3a
-m
-=data/src/main/java/com/yatish/data/remote/dto/CharacterDTO.kt,0/1/010db59616f8c295d6b9b79a50ec6b21f54432c1
-n
->domain/src/main/java/com/yatish/domain/model/CharacterModel.kt,a/2/a27bcb23a95842a504cf8093b9daf4abdf3eb275
-m
-=data/src/main/java/com/yatish/data/mapper/CharactersMapper.kt,8/f/8f504bbcf859f535f308af0e757589b824a82612

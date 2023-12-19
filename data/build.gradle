@@ -15,7 +15,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        buildConfigField 'String', 'BASE_URL', "\"https://hp-api.onrender.com/api/\""
+        buildConfigField 'String', 'BASE_URL', "\"https://hp-api.onrender.com/\""
     }
 
     buildTypes {
@@ -42,6 +42,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$gson"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_interceptor"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0"
+
 
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:$hilt_android"

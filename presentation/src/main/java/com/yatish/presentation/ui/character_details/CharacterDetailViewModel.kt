@@ -16,18 +16,18 @@ class CharacterDetailViewModel @Inject constructor(
 
     private fun fetchCharacterById(id: String) {
         viewModelScope.launch {
-            state.emit(CharacterDetailsViewState.Loading)
+            _state.emit(CharacterDetailsViewState.Loading)
             getCharacterByIdUseCase(id).onSuccess {
-                state.emit(CharacterDetailsViewState.Success(mapper.map(it)))
+                _state.emit(CharacterDetailsViewState.Success(mapper.map(it)))
             }.onFailure {
-                state.emit(CharacterDetailsViewState.Error(it))
+                _state.emit(CharacterDetailsViewState.Error(it))
             }
         }
     }
 
     private fun navigateBack() {
         viewModelScope.launch {
-            sideEffect.emit(CharacterDetailsSideEffect.NavigateBack)
+            _sideEffect.emit(CharacterDetailsSideEffect.NavigateBack)
         }
     }
 

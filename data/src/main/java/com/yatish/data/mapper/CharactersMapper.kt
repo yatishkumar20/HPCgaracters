@@ -10,7 +10,7 @@ class CharactersMapper @Inject constructor() {
             CharacterModel(
                 actor = actor,
                 alive = alive,
-                dateOfBirth = dateOfBirth,
+                dateOfBirth = dateOfBirth ?: "",
                 gender = gender,
                 hairColour = hairColour,
                 hogwartsStaff = hogwartsStaff,

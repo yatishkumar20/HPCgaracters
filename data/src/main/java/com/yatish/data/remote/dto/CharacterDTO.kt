@@ -1,16 +1,16 @@
 package com.yatish.data.remote.dto
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
 data class CharacterDTO(
     val actor: String,
     val alive: Boolean,
-    @SerializedName("alternate_actors")
+    @SerialName("alternate_actors")
     val alternateActors: List<String>,
-    @SerializedName("alternate_names")
+    @SerialName("alternate_names")
     val alternateNames: List<String>,
     val ancestry: String,
-    val dateOfBirth: String,
+    val dateOfBirth: String? = "",
     val eyeColour: String,
     val gender: String,
     val hairColour: String,
