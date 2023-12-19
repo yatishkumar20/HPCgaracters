@@ -1,16 +1,14 @@
 package com.yatish.data.di
 
 import com.yatish.data.repository.HPCharactersRepositoryImpl
-import com.yatish.data.repository.datasource.remote.HPCharactersRemoteDataSource
-import com.yatish.data.repository.datasource.remote.HPCharactersRemoteDataSourceImpl
 import com.yatish.domain.repository.HPCharactersRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class RepositoryModule {
 
     @Binds
@@ -18,8 +16,4 @@ abstract class RepositoryModule {
         hpCharactersRepositoryImpl: HPCharactersRepositoryImpl
     ): HPCharactersRepository
 
-    @Binds
-    abstract fun bindRemoteHPCharactersDataSource(
-        hpCharactersRemoteDataSourceImpl: HPCharactersRemoteDataSourceImpl
-    ): HPCharactersRemoteDataSource
 }

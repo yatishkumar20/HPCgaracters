@@ -72,26 +72,14 @@ i
 9domain/src/test/java/com/yatish/domain/ExampleUnitTest.kt,e/8/e8da2ffa0e38219ce7fb0e1620f72c516d875348
 u
 Epresentation/src/test/java/com/yatish/presentation/ExampleUnitTest.kt,a/a/aa4948860728201ddec4d81eefb2c10e49955b46
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 C
 common/build.gradle,5/c/5c23a73f3b1be7d6214194048e5ccd4842575f5c
-A
-data/build.gradle,7/2/72c2781d3d9ac8b82a3543f0fba5c796b2975232
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-q
-Apresentation/src/main/java/com/yatish/presentation/theme/Color.kt,6/2/623488b3d17f16b411855e1cdf436f29b4fd6e41
 l
 <data/src/main/java/com/yatish/data/remote/HPCharactersAPI.kt,b/1/b1af05bc49b675668713d3fa703b52f12bd6b724
 l
 <app/src/main/java/com/yatish/hpcharacters/HPCharactersApp.kt,0/d/0d420778ca8c4bb515336e8aee9b25eea51ebc1b
-r
-Bpresentation/src/main/java/com/yatish/presentation/MainActivity.kt,7/1/711f91f7012292f83ced80f3a40cbe04c3904869
 q
 Apresentation/src/main/java/com/yatish/presentation/theme/Shape.kt,4/9/49c2be85a3e68e7f31051535ca1b7aca028cdd44
-q
-Apresentation/src/main/java/com/yatish/presentation/theme/Theme.kt,e/f/ef52d43f94b451d67748680a9533590a1944618d
 p
 @presentation/src/main/java/com/yatish/presentation/theme/Type.kt,8/a/8a4a3504928e9bf919b47a40f36219a266e73c3a
 h
@@ -102,5 +90,3 @@ m
 =data/src/main/java/com/yatish/data/mapper/CharactersMapper.kt,8/f/8f504bbcf859f535f308af0e757589b824a82612
 n
 >domain/src/main/java/com/yatish/domain/model/CharacterModel.kt,a/2/a27bcb23a95842a504cf8093b9daf4abdf3eb275
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
