@@ -10,12 +10,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.yatish.presentation.model.CharacterItemUIModel
 import com.yatish.presentation.ui.common.CircularProgressView
 import com.yatish.presentation.ui.common.CustomText
+import com.yatish.presentation.ui.common.ErrorView
 
 @Composable
 fun CharacterListScreen(
@@ -76,16 +76,5 @@ fun CharacterItemView(
         CustomText(text = item.name, style = MaterialTheme.typography.h6)
         CustomText(text = item.house, style = MaterialTheme.typography.body1)
     }
-}
-
-@Composable
-fun ErrorView(message: String) {
-    CustomText(
-        text = message,
-        style = MaterialTheme.typography.body1,
-        color = MaterialTheme.colors.error,
-        modifier = Modifier.fillMaxHeight().padding(4.dp),
-        textAlign = TextAlign.Center
-    )
 }
 

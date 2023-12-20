@@ -11,5 +11,5 @@ interface HPCharactersAPI {
     suspend fun getAllCharacters(): Response<List<CharacterDTO>>
 
     @GET("/api/character/{id}")
-    suspend fun getCharacter(@Path("id") id: String): Response<CharacterDTO>
+    suspend fun getCharacter(@Path("id") id: String): Response<List<CharacterDTO>>
 }

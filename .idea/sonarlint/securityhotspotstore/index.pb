@@ -70,12 +70,8 @@ I
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-?
-settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 q
 Apresentation/src/main/java/com/yatish/presentation/theme/Shape.kt,4/9/49c2be85a3e68e7f31051535ca1b7aca028cdd44
-C
-common/build.gradle,5/c/5c23a73f3b1be7d6214194048e5ccd4842575f5c
 l
 <app/src/main/java/com/yatish/hpcharacters/HPCharactersApp.kt,0/d/0d420778ca8c4bb515336e8aee9b25eea51ebc1b
 p

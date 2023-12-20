@@ -13,7 +13,7 @@ sealed interface CharacterDetailsViewState: ViewState {
 }
 
 sealed interface CharacterDetailsViewIntent: ViewIntent {
-    class LoadData(val id: Int): CharacterDetailsViewIntent
+    class LoadData(val id: String): CharacterDetailsViewIntent
     object NavigateBack: CharacterDetailsViewIntent
 }
 

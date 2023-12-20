@@ -42,8 +42,6 @@ I
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-?
-settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 S
 #common/src/main/AndroidManifest.xml,b/2/b2347b512073f457e1c41676b1b09e0e7452f16f
 Q
@@ -72,8 +70,6 @@ i
 9domain/src/test/java/com/yatish/domain/ExampleUnitTest.kt,e/8/e8da2ffa0e38219ce7fb0e1620f72c516d875348
 u
 Epresentation/src/test/java/com/yatish/presentation/ExampleUnitTest.kt,a/a/aa4948860728201ddec4d81eefb2c10e49955b46
-C
-common/build.gradle,5/c/5c23a73f3b1be7d6214194048e5ccd4842575f5c
 l
 <app/src/main/java/com/yatish/hpcharacters/HPCharactersApp.kt,0/d/0d420778ca8c4bb515336e8aee9b25eea51ebc1b
 q

@@ -34,7 +34,7 @@ class HPCharactersRemoteDataSourceImpl @Inject constructor(
             try {
                 val characterResponse = api.getCharacter(id)
                 characterResponse.body()?.let { response ->
-                    val character = mapper.map(response)
+                    val character = mapper.map(response[0])
                     return@withContext Result.success(character)
                 } ?: run {
                     return@withContext Result.failure(Exception(characterResponse.message()))
