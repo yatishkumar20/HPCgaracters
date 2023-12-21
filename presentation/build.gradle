@@ -55,14 +55,21 @@ dependencies {
     implementation "androidx.compose.material3:material3:$compose_material3"
     implementation "androidx.compose.material3:material3-window-size-class:$compose_material3"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0"
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
+
+    testImplementation "io.mockk:mockk:$mockk"
+    androidTestImplementation "io.mockk:$mockk"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation "app.cash.turbine:turbine:$turbine"
+
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$runtime_compose"
 
     implementation 'javax.inject:javax.inject:1'
 

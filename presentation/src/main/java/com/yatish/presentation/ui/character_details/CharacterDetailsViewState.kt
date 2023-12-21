@@ -3,7 +3,7 @@ package com.yatish.presentation.ui.character_details
 import com.yatish.presentation.base.MVIBaseContract
 import com.yatish.presentation.model.CharacterDetailsUIModel
 
-interface CharacterDetailsContract: MVIBaseContract<CharacterDetailsContract.ViewState, CharacterDetailsContract.ViewIntent, CharacterDetailsContract.SideEffect> {
+interface CharacterDetailsContract: MVIBaseContract<CharacterDetailsContract.ViewState, CharacterDetailsContract.ViewIntent> {
     sealed interface ViewState {
         object Loading : ViewState
         class Success(val data: CharacterDetailsUIModel) : ViewState
@@ -13,6 +13,4 @@ interface CharacterDetailsContract: MVIBaseContract<CharacterDetailsContract.Vie
     sealed interface ViewIntent {
         class LoadData(val id: String) : ViewIntent
     }
-
-    sealed interface SideEffect
 }

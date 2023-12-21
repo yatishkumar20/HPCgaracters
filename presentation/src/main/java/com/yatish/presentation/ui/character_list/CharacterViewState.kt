@@ -1,10 +1,10 @@
 package com.yatish.presentation.ui.character_list
 
-import com.yatish.presentation.base.MVIBaseContract
+import com.yatish.presentation.base.MVISubContract
 import com.yatish.presentation.model.CharacterItemUIModel
 
 interface CharacterListContract :
-    MVIBaseContract<CharacterListContract.ViewState, CharacterListContract.ViewIntent, CharacterListContract.SideEffect> {
+    MVISubContract<CharacterListContract.ViewState, CharacterListContract.ViewIntent, CharacterListContract.SideEffect> {
     sealed interface ViewState {
         object Loading : ViewState
         class Success(val data: List<CharacterItemUIModel>) : ViewState

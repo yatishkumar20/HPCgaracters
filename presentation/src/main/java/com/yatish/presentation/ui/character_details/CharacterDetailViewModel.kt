@@ -22,10 +22,6 @@ class CharacterDetailViewModel @Inject constructor(
     override val viewState: StateFlow<CharacterDetailsContract.ViewState>
         get() = _state.asStateFlow()
 
-    private val _sideEffect = MutableSharedFlow<CharacterDetailsContract.SideEffect>()
-    override val sideEffect: SharedFlow<CharacterDetailsContract.SideEffect>
-        get() = _sideEffect.asSharedFlow()
-
     override fun sendIntent(intent: CharacterDetailsContract.ViewIntent) {
         when(intent) {
             is CharacterDetailsContract.ViewIntent.LoadData -> {
