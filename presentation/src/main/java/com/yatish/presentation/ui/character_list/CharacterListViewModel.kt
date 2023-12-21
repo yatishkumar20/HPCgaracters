@@ -1,10 +1,11 @@
 package com.yatish.presentation.ui.character_list
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yatish.domain.usecase.GetAllCharactersUseCase
-import com.yatish.presentation.base.BaseViewModel
 import com.yatish.presentation.mapper.CharacterItemMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -12,30 +13,40 @@ import javax.inject.Inject
 class CharacterListViewModel @Inject constructor(
     private val getAllCharactersUseCase: GetAllCharactersUseCase,
     private val characterItemMapper: CharacterItemMapper
-) : BaseViewModel<CharacterListViewState, CharacterListViewIntent, CharacterListSideEffect>() {
+) : ViewModel(), CharacterListContract {
+
+    override fun createInitialState(): CharacterListContract.ViewState =
+        CharacterListContract.ViewState.Loading
+
+    private val _state = MutableStateFlow(createInitialState())
+    override val viewState: StateFlow<CharacterListContract.ViewState>
+        get() = _state.asStateFlow()
+
+    private val _sideEffect = MutableSharedFlow<CharacterListContract.SideEffect>()
+    override val sideEffect: SharedFlow<CharacterListContract.SideEffect>
+        get() = _sideEffect.asSharedFlow()
+
+    override fun sendIntent(intent: CharacterListContract.ViewIntent) {
+        when (intent) {
+            is CharacterListContract.ViewIntent.LoadData -> fetchCharacterList()
+            is CharacterListContract.ViewIntent.OnCharacterItemClick -> navigateToDetails(intent.id, intent.name)
+        }
+    }
 
     private fun fetchCharacterList() {
         viewModelScope.launch {
-            _state.emit(CharacterListViewState.Loading)
             getAllCharactersUseCase().onSuccess { response ->
-                _state.emit(CharacterListViewState.Success(response.filter { it.house != "" }
+                _state.emit(CharacterListContract.ViewState.Success(response.filter { it.house != "" }
                     .map { item -> characterItemMapper.map(item) }))
             }.onFailure {
-                _state.emit(CharacterListViewState.Error(it))
+                _state.emit(CharacterListContract.ViewState.Error(it))
             }
         }
     }
 
-    private fun navigateToDetails(id: String) {
+    private fun navigateToDetails(id: String, name: String) {
         viewModelScope.launch {
-            _sideEffect.emit(CharacterListSideEffect.NavigateToDetails(id))
-        }
-    }
-
-    override fun sendIntent(intent: CharacterListViewIntent) {
-        when (intent) {
-            is CharacterListViewIntent.LoadData -> fetchCharacterList()
-            is CharacterListViewIntent.OnCharacterItemClick -> navigateToDetails(intent.id)
+            _sideEffect.emit(CharacterListContract.SideEffect.NavigateToDetails(id, name))
         }
     }
 

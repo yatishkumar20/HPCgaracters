@@ -1,21 +1,22 @@
 package com.yatish.presentation.ui.character_list
 
-import com.yatish.presentation.base.SideEffect
-import com.yatish.presentation.base.ViewIntent
-import com.yatish.presentation.base.ViewState
+import com.yatish.presentation.base.MVIBaseContract
 import com.yatish.presentation.model.CharacterItemUIModel
 
-sealed interface CharacterListViewState: ViewState {
-    object Loading: CharacterListViewState
-    class Success(val data: List<CharacterItemUIModel>): CharacterListViewState
-    class Error(val throwable: Throwable): CharacterListViewState
-}
+interface CharacterListContract :
+    MVIBaseContract<CharacterListContract.ViewState, CharacterListContract.ViewIntent, CharacterListContract.SideEffect> {
+    sealed interface ViewState {
+        object Loading : ViewState
+        class Success(val data: List<CharacterItemUIModel>) : ViewState
+        class Error(val throwable: Throwable) : ViewState
+    }
 
-sealed interface CharacterListViewIntent: ViewIntent {
-    object LoadData: CharacterListViewIntent
-    class OnCharacterItemClick(val id: String): CharacterListViewIntent
-}
+    sealed interface ViewIntent {
+        object LoadData : ViewIntent
+        class OnCharacterItemClick(val id: String, val name: String) : ViewIntent
+    }
 
-sealed interface CharacterListSideEffect: SideEffect {
-    class NavigateToDetails(val id: String): CharacterListSideEffect
+    sealed interface SideEffect {
+        class NavigateToDetails(val id: String, val name: String) : SideEffect
+    }
 }

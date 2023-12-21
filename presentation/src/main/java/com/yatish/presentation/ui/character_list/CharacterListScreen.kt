@@ -16,6 +16,7 @@ import com.yatish.presentation.model.CharacterItemUIModel
 import com.yatish.presentation.ui.common.CircularProgressView
 import com.yatish.presentation.ui.common.CustomText
 import com.yatish.presentation.ui.common.ErrorView
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun CharacterListScreen(
@@ -23,22 +24,30 @@ fun CharacterListScreen(
     viewModel: CharacterListViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
-        viewModel.sendIntent(CharacterListViewIntent.LoadData)
+        viewModel.sendIntent(CharacterListContract.ViewIntent.LoadData)
+
+        viewModel.sideEffect.collectLatest {
+            if (it is CharacterListContract.SideEffect.NavigateToDetails) {
+                onCharacterItemClick(it.id, it.name)
+            }
+        }
     }
 
-    val result = viewModel.state.collectAsState(initial = CharacterListViewState.Loading)
+    val result = viewModel.viewState.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()) {
         when (result.value) {
-            is CharacterListViewState.Loading -> {
+            is CharacterListContract.ViewState.Loading -> {
                 CircularProgressView(modifier = Modifier.align(Alignment.Center))
             }
-            is CharacterListViewState.Success -> {
-                val data = (result.value as CharacterListViewState.Success).data
-                CharacterListView(data, onCharacterItemClick)
+            is CharacterListContract.ViewState.Success -> {
+                val data = (result.value as CharacterListContract.ViewState.Success).data
+                CharacterListView(data, onItemClick = { id, name ->
+                    viewModel.sendIntent(CharacterListContract.ViewIntent.OnCharacterItemClick(id, name))
+                })
             }
-            is CharacterListViewState.Error -> {
-                val errorMessage = (result.value as CharacterListViewState.Error).throwable.message
+            is CharacterListContract.ViewState.Error -> {
+                val errorMessage = (result.value as CharacterListContract.ViewState.Error).throwable.message
                 errorMessage?.let {
                     ErrorView(it)
                 }
@@ -50,12 +59,12 @@ fun CharacterListScreen(
 @Composable
 fun CharacterListView(
     data: List<CharacterItemUIModel>,
-    onCharacterItemClick: (id: String, name: String) -> Unit
+    onItemClick: (id: String, name: String) -> Unit
 ) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(data) { item ->
             CharacterItemView(item) { id, name ->
-                onCharacterItemClick(id, name)
+                onItemClick(id, name)
             }
         }
     }
@@ -64,12 +73,12 @@ fun CharacterListView(
 @Composable
 fun CharacterItemView(
     item: CharacterItemUIModel,
-    onCharacterItemClick: (id: String, name: String) -> Unit
+    onItemClick: (id: String, name: String) -> Unit
 ) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .clickable {
-            onCharacterItemClick(item.id, item.name)
+            onItemClick(item.id, item.name)
         }
         .padding(10.dp)
     ) {

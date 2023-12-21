@@ -2,6 +2,8 @@ package com.yatish.presentation.ui.character_details
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,23 +27,23 @@ fun CharacterDetailsScreen(
     viewModel: CharacterDetailViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
-        viewModel.sendIntent(CharacterDetailsViewIntent.LoadData(characterId))
+        viewModel.sendIntent(CharacterDetailsContract.ViewIntent.LoadData(characterId))
     }
 
-    val result = viewModel.state.collectAsState(initial = CharacterDetailsViewState.Loading)
+    val result = viewModel.viewState.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()) {
         when (result.value) {
-            is CharacterDetailsViewState.Loading -> {
+            is CharacterDetailsContract.ViewState.Loading -> {
                 CircularProgressView(modifier = Modifier.align(Alignment.Center))
             }
-            is CharacterDetailsViewState.Success -> {
-                val data = (result.value as CharacterDetailsViewState.Success).data
+            is CharacterDetailsContract.ViewState.Success -> {
+                val data = (result.value as CharacterDetailsContract.ViewState.Success).data
                 CharacterDetailsView(data)
             }
-            is CharacterDetailsViewState.Error -> {
+            is CharacterDetailsContract.ViewState.Error -> {
                 val errorMessage =
-                    (result.value as CharacterDetailsViewState.Error).throwable.message
+                    (result.value as CharacterDetailsContract.ViewState.Error).throwable.message
                 errorMessage?.let {
                     ErrorView(message = it)
                 }
@@ -56,6 +58,7 @@ fun CharacterDetailsView(data: CharacterDetailsUIModel) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)
+            .verticalScroll(rememberScrollState())
     ) {
 
         Image(
