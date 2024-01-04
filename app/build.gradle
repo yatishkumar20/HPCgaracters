@@ -53,9 +53,9 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':presentation')
 
-    implementation "androidx.core:core-ktx:$core_ktx"
-    implementation "androidx.activity:activity-compose:$activity_compose"
-    implementation "com.google.dagger:hilt-android:$hilt_android"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android"
+    implementation supportDependinces.core_ktx
+    implementation supportDependinces.activity_compose
+    implementation supportDependinces.hilt_android
+    kapt supportDependinces.kapt_hilt_compiler
 
-    }
+}

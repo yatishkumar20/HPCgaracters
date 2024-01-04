@@ -29,7 +29,10 @@ class CharacterListViewModel @Inject constructor(
     override fun sendIntent(intent: CharacterListContract.ViewIntent) {
         when (intent) {
             is CharacterListContract.ViewIntent.LoadData -> fetchCharacterList()
-            is CharacterListContract.ViewIntent.OnCharacterItemClick -> navigateToDetails(intent.id, intent.name)
+            is CharacterListContract.ViewIntent.OnCharacterItemClick -> navigateToDetails(
+                intent.id,
+                intent.name
+            )
         }
     }
 

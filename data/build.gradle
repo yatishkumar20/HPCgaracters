@@ -38,24 +38,24 @@ dependencies {
     implementation project(path: ':domain')
 
     //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$gson"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_interceptor"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0"
+    implementation supportDependinces.retrofit
+    implementation supportDependinces.gson
+    implementation supportDependinces.okhttp
+    implementation supportDependinces.okhttp_interceptor
+    implementation supportDependinces.serialization_json
 
     //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:$hilt_android"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android"
-    kapt "androidx.hilt:hilt-compiler:$hilt_compiler"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_compose"
+    implementation supportDependinces.hilt_android
+    kapt supportDependinces.kapt_hilt_compiler
+    kapt supportDependinces.hilt_compiler
+    implementation supportDependinces.hilt_compose
 
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
+    testImplementation supportDependinces.junit
+    androidTestImplementation supportDependinces.androidx_junit
 
-    testImplementation "io.mockk:mockk:$mockk"
-    androidTestImplementation "io.mockk:$mockk"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation supportDependinces.mockk
+    //androidTestImplementation "io.mockk:$mockk"
+    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation supportDependinces.coroutines_test
 
 }

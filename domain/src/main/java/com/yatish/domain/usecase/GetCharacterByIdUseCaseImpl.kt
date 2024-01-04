@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetCharacterByIdUseCaseImpl @Inject constructor(
     private val repository: HPCharactersRepository
-): GetCharacterByIdUseCase {
+) : GetCharacterByIdUseCase {
     override suspend fun invoke(id: String): Result<CharacterModel> = repository.getCharacter(id)
 }

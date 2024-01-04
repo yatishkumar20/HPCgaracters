@@ -23,7 +23,7 @@ class CharacterDetailViewModel @Inject constructor(
         get() = _state.asStateFlow()
 
     override fun sendIntent(intent: CharacterDetailsContract.ViewIntent) {
-        when(intent) {
+        when (intent) {
             is CharacterDetailsContract.ViewIntent.LoadData -> {
                 fetchCharacterById(intent.id)
             }

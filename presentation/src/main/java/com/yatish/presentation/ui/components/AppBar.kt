@@ -11,9 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import com.yatish.presentation.R
+import com.yatish.presentation.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,35 +26,38 @@ fun AppBar(
 ) {
     Scaffold(
         topBar =
-     {
-        Column(modifier = Modifier.height(48.dp)) {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(title, color = Color.White)
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    MaterialTheme.colors.primaryVariant
-                ),
-                navigationIcon = {
-                    if (showBack) {
-                        Image(
-                            painter = painterResource(com.google.android.material.R.drawable.abc_ic_ab_back_material),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .padding(start = 10.dp)
-                                .size(20.dp, 20.dp)
-                                .clickable {
-                                    onBackClick()
-                                }
-                        )
+        {
+            Column(modifier = Modifier.height(dimensionResource(id = R.dimen.toolbar_height))) {
+                CenterAlignedTopAppBar(
+                    title = {
+                        Text(title, color = White)
+                    },
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        MaterialTheme.colors.primaryVariant
+                    ),
+                    navigationIcon = {
+                        if (showBack) {
+                            Image(
+                                painter = painterResource(com.google.android.material.R.drawable.abc_ic_ab_back_material),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .padding(start = dimensionResource(id = R.dimen.toolbar_padding))
+                                    .size(
+                                        dimensionResource(id = R.dimen.toolbar_image_width),
+                                        dimensionResource(id = R.dimen.toolbar_image_height)
+                                    )
+                                    .clickable {
+                                        onBackClick()
+                                    }
+                            )
+                        }
                     }
-                }
-            )
-        }
+                )
+            }
 
-    }, content = { paddingValues ->
-        Box(modifier = Modifier.padding(paddingValues)) {
-            content()
-        }
-    })
+        }, content = { paddingValues ->
+            Box(modifier = Modifier.padding(paddingValues)) {
+                content()
+            }
+        })
 }

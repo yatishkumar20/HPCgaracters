@@ -42,41 +42,42 @@ android {
 dependencies {
 
     implementation project(path: ':domain')
-    implementation "androidx.core:core-ktx:$core_ktx"
-    implementation "androidx.appcompat:appcompat:$appcompat"
-    implementation "com.google.android.material:material:$google_material"
-    implementation "androidx.navigation:navigation-runtime-ktx:$runtime_ktx"
+    implementation supportDependinces.core_ktx
+    implementation supportDependinces.appcompat
+    implementation supportDependinces.google_material
+    implementation supportDependinces.runtime_ktx
 
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle"
-    implementation "androidx.activity:activity-compose:$activity_compose"
-    implementation "androidx.compose.ui:ui:$compose_ui_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
-    implementation "androidx.compose.material:material:$compose_material"
-    implementation "androidx.compose.material3:material3:$compose_material3"
-    implementation "androidx.compose.material3:material3-window-size-class:$compose_material3"
+    implementation supportDependinces.lifecycle
+    implementation supportDependinces.activity_compose
+    implementation supportDependinces.compose_ui_version
+    implementation supportDependinces.tooling_preview
+    implementation supportDependinces.compose_material
+    implementation supportDependinces.compose_material3
+    implementation supportDependinces.material3_window
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    //androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+    //debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    //debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
+    testImplementation supportDependinces.junit
+    //androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
 
-    testImplementation "io.mockk:mockk:$mockk"
-    androidTestImplementation "io.mockk:$mockk"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
-    testImplementation "app.cash.turbine:turbine:$turbine"
+    testImplementation supportDependinces.mockk
+    //androidTestImplementation "io.mockk:$mockk"
+    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation supportDependinces.coroutines_test
+    testImplementation supportDependinces.turbine
 
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:$runtime_compose"
+    implementation supportDependinces.runtime_compose
 
-    implementation 'javax.inject:javax.inject:1'
+    //implementation 'javax.inject:javax.inject:1'
 
-    implementation "com.google.dagger:hilt-android:$hilt_android"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_compose"
+    implementation supportDependinces.hilt_android
+    kapt supportDependinces.kapt_hilt_compiler
+    implementation supportDependinces.hilt_compose
 
-    implementation "io.coil-kt:coil-compose:$coil"
+    implementation supportDependinces.coil
 
 }

@@ -1,17 +1,23 @@
 package com.yatish.presentation.ui.character_list
 
+import CustomImageView
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.yatish.presentation.R
 import com.yatish.presentation.model.CharacterItemUIModel
 import com.yatish.presentation.ui.common.CircularProgressView
 import com.yatish.presentation.ui.common.CustomText
@@ -43,11 +49,17 @@ fun CharacterListScreen(
             is CharacterListContract.ViewState.Success -> {
                 val data = (result.value as CharacterListContract.ViewState.Success).data
                 CharacterListView(data, onItemClick = { id, name ->
-                    viewModel.sendIntent(CharacterListContract.ViewIntent.OnCharacterItemClick(id, name))
+                    viewModel.sendIntent(
+                        CharacterListContract.ViewIntent.OnCharacterItemClick(
+                            id,
+                            name
+                        )
+                    )
                 })
             }
             is CharacterListContract.ViewState.Error -> {
-                val errorMessage = (result.value as CharacterListContract.ViewState.Error).throwable.message
+                val errorMessage =
+                    (result.value as CharacterListContract.ViewState.Error).throwable.message
                 errorMessage?.let {
                     ErrorView(it)
                 }
@@ -80,7 +92,7 @@ fun CharacterItemView(
         .clickable {
             onItemClick(item.id, item.name)
         }
-        .padding(10.dp)
+        .padding(dimensionResource(id = R.dimen.padding_list))
     ) {
         CustomText(text = item.name, style = MaterialTheme.typography.h6)
         CustomText(text = item.house, style = MaterialTheme.typography.body1)

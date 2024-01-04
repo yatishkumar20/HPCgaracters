@@ -14,7 +14,9 @@ fun ErrorView(message: String) {
         text = message,
         style = MaterialTheme.typography.body1,
         color = MaterialTheme.colors.error,
-        modifier = Modifier.fillMaxHeight().padding(4.dp),
+        modifier = Modifier
+            .fillMaxHeight()
+            .padding(4.dp),
         textAlign = TextAlign.Center
     )
 }

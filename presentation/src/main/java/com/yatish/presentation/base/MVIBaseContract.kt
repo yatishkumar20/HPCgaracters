@@ -11,7 +11,8 @@ interface MVIBaseContract<ViewState, ViewIntent> {
     fun createInitialState(): ViewState
 }
 
-interface MVISubContract<ViewState, ViewIntent, SideEffect>: MVIBaseContract<ViewState, ViewIntent> {
+interface MVISubContract<ViewState, ViewIntent, SideEffect> :
+    MVIBaseContract<ViewState, ViewIntent> {
     override val viewState: StateFlow<ViewState>
     val sideEffect: Flow<SideEffect>
 

@@ -1,0 +1,66 @@
+ext {
+    compose_ui_version = '1.2.0'
+    core_ktx = '1.12.0'
+    activity_compose = '1.8.2'
+
+    hilt_android = "2.44.2"
+    hilt_compiler = "1.0.0"
+    hilt_compose = "1.1.0-alpha01"
+    javax_inject = "1"
+
+    retrofit = "2.9.0"
+    gson = "2.9.0"
+    okhttp = "5.0.0-alpha.2"
+    okhttp_interceptor = "5.0.0-alpha.2"
+    serialization_json = "1.6.0"
+
+    coil = "2.4.0"
+
+    appcompat = "1.6.1"
+    google_material = "1.11.0"
+    runtime_ktx = "2.7.6"
+    lifecycle = "2.6.2"
+    compose_material = "1.5.4"
+    compose_material3 = "1.1.2"
+    runtime_compose = "2.6.2"
+    constraintlayout = "1.0.1"
+
+    mockk = "1.12.3"
+    core_testing = "2.2.0"
+    coroutines_test = "1.6.2"
+    junit = "4.13.2"
+    androidx_junit = "1.1.5"
+    turbine = "1.0.0"
+
+    supportDependinces = [
+            core_ktx : "androidx.core:core-ktx:$core_ktx",
+            activity_compose : "androidx.activity:activity-compose:$activity_compose",
+            hilt_android : "com.google.dagger:hilt-android:$hilt_android",
+            hilt_compose : "androidx.hilt:hilt-navigation-compose:$hilt_compose",
+            kapt_hilt_compiler : "com.google.dagger:hilt-android-compiler:$hilt_android",
+            hilt_compiler : "androidx.hilt:hilt-compiler:$hilt_compiler",
+            javax_inject : "javax.inject:javax.inject:$javax_inject",
+            retrofit : "com.squareup.retrofit2:retrofit:$retrofit",
+            gson : "com.squareup.retrofit2:converter-gson:$gson",
+            okhttp : "com.squareup.okhttp3:okhttp:$okhttp",
+            okhttp_interceptor : "com.squareup.okhttp3:logging-interceptor:$okhttp_interceptor",
+            serialization_json : "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_json",
+            junit : "junit:junit:$junit",
+            androidx_junit : "androidx.test.ext:junit:$androidx_junit",
+            mockk : "io.mockk:mockk:$mockk",
+            coroutines_test : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test",
+            appcompat : "androidx.appcompat:appcompat:$appcompat",
+            google_material : "com.google.android.material:material:$google_material",
+            runtime_ktx : "androidx.navigation:navigation-runtime-ktx:$runtime_ktx",
+            lifecycle : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle",
+            compose_ui_version : "androidx.compose.ui:ui:$compose_ui_version",
+            tooling_preview : "androidx.compose.ui:ui-tooling-preview:$compose_ui_version",
+            compose_material : "androidx.compose.material:material:$compose_material",
+            compose_material3 : "androidx.compose.material3:material3:$compose_material3",
+            material3_window : "androidx.compose.material3:material3-window-size-class:$compose_material3",
+            turbine : "app.cash.turbine:turbine:$turbine",
+            runtime_compose : "androidx.lifecycle:lifecycle-runtime-compose:$runtime_compose",
+            coil : "io.coil-kt:coil-compose:$coil",
+            constraintlayout : "androidx.constraintlayout:constraintlayout-compose:$constraintlayout"
+    ]
+}

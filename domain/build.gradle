@@ -33,16 +33,17 @@ android {
 }
 
 dependencies {
-    implementation 'javax.inject:javax.inject:1'
 
-    implementation "com.google.dagger:hilt-android:$hilt_android"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android"
+    implementation supportDependinces.javax_inject
 
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
+    implementation supportDependinces.hilt_android
+    kapt supportDependinces.kapt_hilt_compiler
 
-    testImplementation "io.mockk:mockk:$mockk"
-    androidTestImplementation "io.mockk:$mockk"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation supportDependinces.junit
+    androidTestImplementation supportDependinces.androidx_junit
+
+    testImplementation supportDependinces.mockk
+    //androidTestImplementation "io.mockk:$mockk"
+    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation supportDependinces.coroutines_test
 }

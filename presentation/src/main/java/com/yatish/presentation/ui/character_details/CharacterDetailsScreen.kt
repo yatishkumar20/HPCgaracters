@@ -1,6 +1,6 @@
 package com.yatish.presentation.ui.character_details
 
-import androidx.compose.foundation.Image
+import CustomImageView
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,11 +10,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberAsyncImagePainter
 import com.yatish.presentation.R
 import com.yatish.presentation.model.CharacterDetailsUIModel
 import com.yatish.presentation.ui.common.CircularProgressView
@@ -54,106 +54,154 @@ fun CharacterDetailsScreen(
 
 @Composable
 fun CharacterDetailsView(data: CharacterDetailsUIModel) {
-    Column(
+
+    ConstraintLayout(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp)
+            .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
 
-        Image(
-            painter = rememberAsyncImagePainter(model = data.image),
-            contentDescription = data.name,
-            modifier = Modifier
-                .height(200.dp)
-                .width(200.dp)
-                .align(Alignment.CenterHorizontally)
-        )
+        val (image, name, dobLabel, dob, houseLabel, house, studentLabel, student, staffLabel, staff) = createRefs()
 
-        Spacer(modifier = Modifier.height(10.dp))
+        CustomImageView(
+            imageUrl = data.image,
+            description = data.name,
+            modifier = Modifier
+                .constrainAs(image) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .padding(dimensionResource(id = R.dimen.image_padding))
+                .height(dimensionResource(id = R.dimen.image_height))
+                .width(dimensionResource(id = R.dimen.image_width))
+        )
 
         CustomText(
             text = data.actor,
             style = MaterialTheme.typography.h6,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier
+                .constrainAs(name) {
+                    top.linkTo(image.bottom)
+                    start.linkTo(image.start)
+                    end.linkTo(image.end)
+                }
+                .padding(bottom = dimensionResource(id = R.dimen.padding_bottom))
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        val createGuidelineFromBottom = createGuidelineFromEnd(0.5f)
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column (
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CustomText(
-                    text = stringResource(id = R.string.date_of_birth),
-                    style = MaterialTheme.typography.subtitle1,
-                    textAlign = TextAlign.Center
-                )
-                CustomText(
-                    text = data.dateOfBirth,
-                    style = MaterialTheme.typography.subtitle2,
-                    textAlign = TextAlign.Center
-                )
-            }
+        CustomText(
+            text = stringResource(id = R.string.date_of_birth),
+            style = MaterialTheme.typography.subtitle1,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(dobLabel) {
+                    top.linkTo(name.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(createGuidelineFromBottom)
+                }
+                .padding(start = dimensionResource(id = R.dimen.padding_start))
+        )
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CustomText(
-                    text = stringResource(id = R.string.house),
-                    style = MaterialTheme.typography.subtitle1,
-                    textAlign = TextAlign.Center
-                )
-                CustomText(
-                    text = data.house,
-                    style = MaterialTheme.typography.subtitle2,
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(12.dp))
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CustomText(
-                    text = stringResource(id = R.string.hogwarts_student),
-                    style = MaterialTheme.typography.subtitle1,
-                    textAlign = TextAlign.Center
-                )
-                CustomText(
-                    text = if (data.hogwartsStudent) stringResource(id = R.string.yes) else stringResource(
-                        id = R.string.no
-                    ),
-                    style = MaterialTheme.typography.subtitle2,
-                    textAlign = TextAlign.Center
-                )
-            }
+        CustomText(
+            text = data.dateOfBirth,
+            style = MaterialTheme.typography.subtitle2,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(dob) {
+                    top.linkTo(dobLabel.bottom)
+                    start.linkTo(dobLabel.start)
+                    end.linkTo(dobLabel.end)
+                }
+                .padding(start = dimensionResource(id = R.dimen.padding_start))
+        )
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CustomText(
-                    text = stringResource(id = R.string.hogwarts_staff),
-                    style = MaterialTheme.typography.subtitle1,
-                    textAlign = TextAlign.Center
+        CustomText(
+            text = stringResource(id = R.string.house),
+            style = MaterialTheme.typography.subtitle1,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(houseLabel) {
+                    top.linkTo(name.bottom)
+                    start.linkTo(createGuidelineFromBottom)
+                    end.linkTo(parent.end)
+                }
+                .padding(end = dimensionResource(id = R.dimen.padding_end))
+        )
+
+        CustomText(
+            text = data.house,
+            style = MaterialTheme.typography.subtitle2,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(house) {
+                    top.linkTo(houseLabel.bottom)
+                    start.linkTo(houseLabel.start)
+                    end.linkTo(houseLabel.end)
+                }
+                .padding(end = dimensionResource(id = R.dimen.padding_end))
+        )
+
+        CustomText(
+            text = stringResource(id = R.string.hogwarts_student),
+            style = MaterialTheme.typography.subtitle1,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(studentLabel) {
+                    top.linkTo(dob.bottom)
+                    start.linkTo(dobLabel.start)
+                }
+                .padding(
+                    start = dimensionResource(id = R.dimen.padding_start),
+                    top = dimensionResource(id = R.dimen.padding_top)
                 )
-                CustomText(
-                    text = if (data.hogwartsStaff) stringResource(id = R.string.yes) else stringResource(
-                        id = R.string.no
-                    ),
-                    style = MaterialTheme.typography.subtitle2,
-                    textAlign = TextAlign.Center
+        )
+
+        CustomText(
+            text = if (data.hogwartsStudent) stringResource(id = R.string.yes) else stringResource(
+                id = R.string.no
+            ),
+            style = MaterialTheme.typography.subtitle2,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(student) {
+                    top.linkTo(studentLabel.bottom)
+                    start.linkTo(studentLabel.start)
+                    end.linkTo(studentLabel.end)
+                }
+                .padding(start = dimensionResource(id = R.dimen.padding_start))
+        )
+
+        CustomText(
+            text = stringResource(id = R.string.hogwarts_staff),
+            style = MaterialTheme.typography.subtitle1,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(staffLabel) {
+                    top.linkTo(house.bottom)
+                    start.linkTo(createGuidelineFromBottom)
+                    end.linkTo(parent.end)
+                }
+                .padding(
+                    end = dimensionResource(id = R.dimen.padding_end),
+                    top = dimensionResource(id = R.dimen.padding_top)
                 )
-            }
-        }
+        )
+        CustomText(
+            text = if (data.hogwartsStaff) stringResource(id = R.string.yes) else stringResource(
+                id = R.string.no
+            ),
+            style = MaterialTheme.typography.subtitle2,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(staff) {
+                    top.linkTo(staffLabel.bottom)
+                    start.linkTo(staffLabel.start)
+                    end.linkTo(staffLabel.end)
+                }
+                .padding(end = dimensionResource(id = R.dimen.padding_end))
+        )
+
     }
 }

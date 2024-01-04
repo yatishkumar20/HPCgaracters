@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetAllCharactersUseCaseImpl @Inject constructor(
     private val repository: HPCharactersRepository
-): GetAllCharactersUseCase {
+) : GetAllCharactersUseCase {
     override suspend fun invoke(): Result<List<CharacterModel>> = repository.getCharacters()
 }
