@@ -25,7 +25,8 @@ object TestData {
     val characterUIModel = CharacterItemUIModel(
         id = "1",
         name = "Harry Potter",
-        house = "Gryffindor"
+        house = "Gryffindor",
+        image = "https://ik.imagekit.io/hpapi/harry.jpg",
     )
 
     val characterDetailsUIModel = CharacterDetailsUIModel(

@@ -150,7 +150,8 @@ fun CharacterDetailsView(data: CharacterDetailsUIModel) {
             modifier = Modifier
                 .constrainAs(studentLabel) {
                     top.linkTo(dob.bottom)
-                    start.linkTo(dobLabel.start)
+                    start.linkTo(parent.start)
+                    end.linkTo(createGuidelineFromBottom)
                 }
                 .padding(
                     start = dimensionResource(id = R.dimen.padding_start),

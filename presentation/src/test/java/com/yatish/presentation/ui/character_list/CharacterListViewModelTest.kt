@@ -1,6 +1,5 @@
 package com.yatish.presentation.ui.character_list
 
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.cash.turbine.test
 import com.yatish.domain.usecase.GetAllCharactersUseCase
 import com.yatish.presentation.TestData

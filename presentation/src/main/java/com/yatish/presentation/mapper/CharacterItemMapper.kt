@@ -11,7 +11,8 @@ class CharacterItemMapper @Inject constructor() {
             CharacterItemUIModel(
                 name = name,
                 house = house,
-                id = id
+                id = id,
+                image = image
             )
         }
 }

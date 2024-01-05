@@ -76,15 +76,7 @@ Idomain/src/main/java/com/yatish/domain/usecase/GetCharacterByIdUseCase.kt,8/f/
 Rpresentation/src/main/java/com/yatish/presentation/mapper/CharacterDetailMapper.kt,d/6/d64fd3f64e641735caafec7357b4c30d0b545895
 l
 <data/src/main/java/com/yatish/data/remote/HPCharactersAPI.kt,b/1/b1af05bc49b675668713d3fa703b52f12bd6b724
-’
-bpresentation/src/test/java/com/yatish/presentation/ui/character_list/CharacterListViewModelTest.kt,f/9/f9acd8e4367ada8873816975aa07bece9b6a3e84
 r
 Bpresentation/src/main/java/com/yatish/presentation/MainActivity.kt,7/1/711f91f7012292f83ced80f3a40cbe04c3904869
-^
-.data/src/test/java/com/yatish/data/TestData.kt,3/2/32dd7f69efafdcf5b46259746aaaa9494cba04da
 t
 Ddata/src/androidTest/java/com/yatish/data/ExampleInstrumentedTest.kt,d/7/d798b509d042d97b4f92ae2c5e701597c7604a12
-
-Qdomain/src/test/java/com/yatish/domain/usecase/GetAllCharactersUseCaseImplTest.kt,9/7/97b6e9c1a64e915b21190abdcb0e8ff46b46e2b9
-
-Qdomain/src/test/java/com/yatish/domain/usecase/GetCharacterByIdUseCaseImplTest.kt,a/5/a5f8c9cda454a505807b60a2e9bc63144873cc17

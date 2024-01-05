@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="list_screen_name">HPCharacters</string>
+    <string name="list_screen_name">HP Characters</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="house">House</string>
     <string name="hogwarts_staff">Hogwarts Staff</string>

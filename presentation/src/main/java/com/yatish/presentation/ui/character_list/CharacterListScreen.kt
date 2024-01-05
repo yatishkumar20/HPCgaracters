@@ -1,12 +1,12 @@
 package com.yatish.presentation.ui.character_list
 
 import CustomImageView
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,10 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.yatish.presentation.R
 import com.yatish.presentation.model.CharacterItemUIModel
+import com.yatish.presentation.theme.Black
+import com.yatish.presentation.theme.White
 import com.yatish.presentation.ui.common.CircularProgressView
 import com.yatish.presentation.ui.common.CustomText
 import com.yatish.presentation.ui.common.ErrorView
@@ -87,15 +88,24 @@ fun CharacterItemView(
     item: CharacterItemUIModel,
     onItemClick: (id: String, name: String) -> Unit
 ) {
-    Column(modifier = Modifier
+    Row(modifier = Modifier
         .fillMaxWidth()
         .clickable {
             onItemClick(item.id, item.name)
         }
         .padding(dimensionResource(id = R.dimen.padding_list))
     ) {
-        CustomText(text = item.name, style = MaterialTheme.typography.h6)
-        CustomText(text = item.house, style = MaterialTheme.typography.body1)
+        CustomImageView(
+            imageUrl = item.image, description = item.name, modifier = Modifier
+                .clip(CircleShape)
+                .background(if (item.image != "") Black else White)
+                .size(dimensionResource(id = R.dimen.list_image_size))
+        )
+
+        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.list_start_padding))) {
+            CustomText(text = item.name, style = MaterialTheme.typography.h6)
+            CustomText(text = item.house, style = MaterialTheme.typography.body1)
+        }
     }
 }
 
