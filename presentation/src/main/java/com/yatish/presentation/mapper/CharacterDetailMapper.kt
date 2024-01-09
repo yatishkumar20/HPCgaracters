@@ -10,10 +10,7 @@ class CharacterDetailMapper @Inject constructor() {
         with(model) {
             CharacterDetailsUIModel(
                 actor = actor,
-                alive = alive,
                 dateOfBirth = dateOfBirth,
-                gender = gender,
-                hairColour = hairColour,
                 hogwartsStaff = hogwartsStaff,
                 hogwartsStudent = hogwartsStudent,
                 house = house,

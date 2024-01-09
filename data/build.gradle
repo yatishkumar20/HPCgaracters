@@ -54,8 +54,6 @@ dependencies {
     androidTestImplementation supportDependinces.androidx_junit
 
     testImplementation supportDependinces.mockk
-    //androidTestImplementation "io.mockk:$mockk"
-    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
     testImplementation supportDependinces.coroutines_test
 
 }

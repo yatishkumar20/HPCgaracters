@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'app.cash.paparazzi' version '1.3.1'
 }
 
 android {
@@ -54,25 +55,20 @@ dependencies {
     implementation supportDependinces.compose_material
     implementation supportDependinces.compose_material3
     implementation supportDependinces.material3_window
-    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+    implementation supportDependinces.constraintlayout
 
-    //androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
-    //debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    //debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    androidTestImplementation supportDependinces.ui_test_junit
+    debugImplementation supportDependinces.test_manifest
 
     testImplementation supportDependinces.junit
-    //androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
+    androidTestImplementation supportDependinces.androidx_junit
 
     testImplementation supportDependinces.mockk
-    //androidTestImplementation "io.mockk:$mockk"
-    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+
     testImplementation supportDependinces.coroutines_test
     testImplementation supportDependinces.turbine
 
     implementation supportDependinces.runtime_compose
-
-    //implementation 'javax.inject:javax.inject:1'
 
     implementation supportDependinces.hilt_android
     kapt supportDependinces.kapt_hilt_compiler
