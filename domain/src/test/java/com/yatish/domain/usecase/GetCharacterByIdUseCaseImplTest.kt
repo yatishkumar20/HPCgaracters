@@ -23,14 +23,17 @@ class GetCharacterByIdUseCaseImplTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `GIVEN characterId WHEN usecase invoked THEN verify repository called`() = runTest {
-        val characterId = "1"
-        coEvery { repository.getCharacter(characterId) } returns Result.failure(Exception())
+        coEvery { repository.getCharacter(CHARACTER_ID) } returns Result.failure(Exception())
 
-        getCharacterByIdUseCase.invoke(characterId)
+        getCharacterByIdUseCase.invoke(CHARACTER_ID)
 
         coVerify {
-            repository.getCharacter(characterId)
+            repository.getCharacter(CHARACTER_ID)
         }
+    }
+
+    private companion object {
+        const val CHARACTER_ID = "1"
     }
 
 }

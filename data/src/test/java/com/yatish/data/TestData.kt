@@ -21,7 +21,7 @@ object TestData {
 
     val charactersList = listOf(characterModel)
 
-    private val characterModelDto = CharacterDTO(
+    val characterModelDto = CharacterDTO(
         id = "1",
         name = "Harry Potter",
         dateOfBirth = "31-07-1980",

@@ -27,18 +27,23 @@ class HPCharactersRepositoryImplTest {
         coEvery { repository.getCharacters() } returns Result.success(TestData.charactersList)
 
         repository.getCharacters().onSuccess {
-            Assert.assertEquals("Harry Potter", it[0].name)
+            Assert.assertEquals(CHARACTER_NAME_1, it[0].name)
         }
     }
 
     @Test
     fun `GIVEN characterId WHEN repository called THEN return the character details`() = runTest {
-        val characterId = "1"
-        coEvery { repository.getCharacter(characterId) } returns Result.success(TestData.characterModel)
+        coEvery { repository.getCharacter(CHARACTER_ID) } returns Result.success(TestData.characterModel)
 
-        repository.getCharacter(characterId).onSuccess {
-            Assert.assertEquals("Daniel Radcliffe", it.actor)
+        repository.getCharacter(CHARACTER_ID).onSuccess {
+            Assert.assertEquals(CHARACTER_NAME_2, it.actor)
         }
+    }
+
+    private companion object {
+        const val CHARACTER_ID = "1"
+        const val CHARACTER_NAME_1 = "Harry Potter"
+        const val CHARACTER_NAME_2 = "Daniel Radcliffe"
     }
 
 }

@@ -5,8 +5,8 @@ import com.yatish.data.mapper.CharactersMapper
 import com.yatish.data.remote.HPCharactersAPI
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
@@ -19,8 +19,8 @@ class HPCharactersRemoteDataSourceImplTest {
     private val api: HPCharactersAPI = mockk()
 
     private lateinit var dataSource: HPCharactersRemoteDataSource
-    private val dispatcher = Dispatchers.IO
     private val mapper = CharactersMapper()
+    private val dispatcher = UnconfinedTestDispatcher()
 
     @Before
     fun setUp() {
@@ -36,7 +36,7 @@ class HPCharactersRemoteDataSourceImplTest {
         coEvery { api.getAllCharacters() } returns Response.success(characterListDto)
 
         dataSource.getCharacters().onSuccess {
-            Assert.assertEquals("Harry Potter", it[0].name)
+            Assert.assertEquals(CHARACTER_NAME, it[0].name)
         }
     }
 
@@ -51,7 +51,7 @@ class HPCharactersRemoteDataSourceImplTest {
 
     @Test
     fun `WHEN data source called THEN through exception`() = runTest {
-        coEvery { api.getAllCharacters() } throws Exception("Unknown error")
+        coEvery { api.getAllCharacters() } throws Exception(EXCEPTION_MESSAGE)
         val result = dataSource.getCharacters()
 
         assert(result.isFailure)
@@ -59,30 +59,33 @@ class HPCharactersRemoteDataSourceImplTest {
 
     @Test
     fun `GIVEN characterId WHEN data source called THEN return character details`() = runTest {
-        val characterId = "1"
-        coEvery { api.getCharacter(characterId) } returns Response.success(characterListDto)
+        coEvery { api.getCharacter(CHARACTER_ID) } returns Response.success(characterListDto)
 
-        dataSource.getCharacter(characterId).onSuccess {
-            Assert.assertEquals("Harry Potter", it.name)
+        dataSource.getCharacter(CHARACTER_ID).onSuccess {
+            Assert.assertEquals(CHARACTER_NAME, it.name)
         }
     }
 
     @Test
     fun `GIVEN characterId WHEN data source called THEN return empty data`() = runTest {
-        val characterId = "1"
-        coEvery { api.getCharacter(characterId) } returns Response.success(null)
+        coEvery { api.getCharacter(CHARACTER_ID) } returns Response.success(null)
 
-        val result = dataSource.getCharacter(characterId)
+        val result = dataSource.getCharacter(CHARACTER_ID)
 
         assert(result.isFailure)
     }
 
     @Test
     fun `GIVEN characterId WHEN data source called THEN through exception`() = runTest {
-        val characterId = "1"
-        coEvery { api.getCharacter(characterId) } throws Exception("Unknown error")
-        val result = dataSource.getCharacter(characterId)
+        coEvery { api.getCharacter(CHARACTER_ID) } throws Exception(EXCEPTION_MESSAGE)
+        val result = dataSource.getCharacter(CHARACTER_ID)
 
         assert(result.isFailure)
+    }
+
+    private companion object {
+        const val CHARACTER_ID = "1"
+        const val CHARACTER_NAME = "Harry Potter"
+        const val EXCEPTION_MESSAGE = "Unknown error"
     }
 }
