@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace 'com.yatish.hpcharacters'
-    compileSdk 34
+    compileSdk compile_sdk
 
     defaultConfig {
         applicationId "com.yatish.hpcharacters"
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        minSdk min_sdk
+        targetSdk target_sdk
+        versionCode version_code
+        versionName version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
