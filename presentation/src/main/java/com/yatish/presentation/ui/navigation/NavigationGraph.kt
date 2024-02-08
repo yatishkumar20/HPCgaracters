@@ -44,16 +44,14 @@ fun NavigationGraph(
             )
         ) { backStack ->
             val characterName = backStack.arguments?.getString(PARAM_CHARACTER_NAME) ?: ""
-            backStack.arguments?.getString(PARAM_CHARACTER_ID)?.let {
-                AppBar(
-                    title = characterName,
-                    showBack = true,
-                    content = {
-                        CharacterDetailsScreen(it)
-                    }
-                ) {
-                    navController.popBackStack()
+            AppBar(
+                title = characterName,
+                showBack = true,
+                content = {
+                    CharacterDetailsScreen()
                 }
+            ) {
+                navController.popBackStack()
             }
         }
     }

@@ -3,6 +3,7 @@ package com.yatish.data.repository.datasource.remote
 import com.yatish.data.di.IoDispatcher
 import com.yatish.data.mapper.CharactersMapper
 import com.yatish.data.remote.HPCharactersAPI
+import com.yatish.domain.Result
 import com.yatish.domain.model.CharacterModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -20,12 +21,12 @@ class HPCharactersRemoteDataSourceImpl @Inject constructor(
                 val charactersResponse = api.getAllCharacters()
                 charactersResponse.body()?.let { response ->
                     val characters = response.map { mapper.map(it) }
-                    return@withContext Result.success(characters)
+                    return@withContext Result.Success(characters)
                 } ?: run {
-                    return@withContext Result.failure(Exception(charactersResponse.message()))
+                    return@withContext Result.Error(Exception(charactersResponse.message()))
                 }
             } catch (exception: Exception) {
-                return@withContext Result.failure(exception)
+                return@withContext Result.Error(exception)
             }
         }
 
@@ -35,12 +36,12 @@ class HPCharactersRemoteDataSourceImpl @Inject constructor(
                 val characterResponse = api.getCharacter(id)
                 characterResponse.body()?.let { response ->
                     val character = mapper.map(response[0])
-                    return@withContext Result.success(character)
+                    return@withContext Result.Success(character)
                 } ?: run {
-                    return@withContext Result.failure(Exception(characterResponse.message()))
+                    return@withContext Result.Error(Exception(characterResponse.message()))
                 }
             } catch (exception: Exception) {
-                return@withContext Result.failure(exception)
+                return@withContext Result.Error(exception)
             }
         }
 }

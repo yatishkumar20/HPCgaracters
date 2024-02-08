@@ -1,5 +1,6 @@
 package com.yatish.data.repository.datasource.remote
 
+import com.yatish.domain.Result
 import com.yatish.domain.model.CharacterModel
 
 interface HPCharactersRemoteDataSource {

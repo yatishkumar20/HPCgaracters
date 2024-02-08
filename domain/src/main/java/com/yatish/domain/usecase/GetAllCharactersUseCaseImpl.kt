@@ -1,5 +1,6 @@
 package com.yatish.domain.usecase
 
+import com.yatish.domain.Result
 import com.yatish.domain.model.CharacterModel
 import com.yatish.domain.repository.HPCharactersRepository
 import javax.inject.Inject

@@ -1,5 +1,6 @@
 package com.yatish.domain.repository
 
+import com.yatish.domain.Result
 import com.yatish.domain.model.CharacterModel
 
 interface HPCharactersRepository {

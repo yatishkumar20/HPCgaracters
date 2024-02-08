@@ -31,10 +31,8 @@ fun CharacterListScreen(
     viewModel: CharacterListViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
-        viewModel.sendIntent(CharacterListContract.ViewIntent.LoadData)
-
         viewModel.sideEffect.collectLatest {
-            if (it is CharacterListContract.SideEffect.NavigateToDetails) {
+            if (it is CharacterListContract.ListScreenSideEffect.NavigateToDetails) {
                 onCharacterItemClick(it.id, it.name)
             }
         }
@@ -44,23 +42,23 @@ fun CharacterListScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         when (result.value) {
-            is CharacterListContract.ViewState.Loading -> {
+            is CharacterListContract.ListScreenViewState.Loading -> {
                 CircularProgressView(modifier = Modifier.align(Alignment.Center))
             }
-            is CharacterListContract.ViewState.Success -> {
-                val data = (result.value as CharacterListContract.ViewState.Success).data
+            is CharacterListContract.ListScreenViewState.Success -> {
+                val data = (result.value as CharacterListContract.ListScreenViewState.Success).data
                 CharacterListView(data, onItemClick = { id, name ->
                     viewModel.sendIntent(
-                        CharacterListContract.ViewIntent.OnCharacterItemClick(
+                        CharacterListContract.ListScreenViewIntent.OnCharacterItemClick(
                             id,
                             name
                         )
                     )
                 })
             }
-            is CharacterListContract.ViewState.Error -> {
+            is CharacterListContract.ListScreenViewState.Error -> {
                 val errorMessage =
-                    (result.value as CharacterListContract.ViewState.Error).throwable.message
+                    (result.value as CharacterListContract.ListScreenViewState.Error).throwable.message
                 errorMessage?.let {
                     ErrorView(it)
                 }
