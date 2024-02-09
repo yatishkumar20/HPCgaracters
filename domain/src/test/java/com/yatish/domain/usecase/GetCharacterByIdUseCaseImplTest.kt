@@ -1,6 +1,7 @@
 package com.yatish.domain.usecase
 
 import com.yatish.domain.repository.HPCharactersRepository
+import com.yatish.domain.Result
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -23,7 +24,7 @@ class GetCharacterByIdUseCaseImplTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `GIVEN characterId WHEN usecase invoked THEN verify repository called`() = runTest {
-        coEvery { repository.getCharacter(CHARACTER_ID) } returns Result.failure(Exception())
+        coEvery { repository.getCharacter(CHARACTER_ID) } returns Result.Error(Exception())
 
         getCharacterByIdUseCase.invoke(CHARACTER_ID)
 
