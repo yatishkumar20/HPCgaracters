@@ -28,8 +28,9 @@ class CharacterListViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         coEvery { getAllCharactersUseCase() } returns Result.Success(TestData.charactersList)
-        coEvery { mapper.map(TestData.charactersList[0]) } returns TestData.characterUIModel
+        coEvery { mapper.map(listOf(TestData.charactersList[0])) } returns listOf(TestData.characterUIModel)
         viewModel = CharacterListViewModel(
+            testDispatcher,
             getAllCharactersUseCase,
             mapper
         )

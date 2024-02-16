@@ -35,6 +35,7 @@ class CharacterDetailViewModelTest {
         coEvery { getCharacterByIdUseCase(ID) } returns Result.Success(TestData.characterModel)
         coEvery { mapper.map(TestData.characterModel) } returns TestData.characterDetailsUIModel
         viewModel = CharacterDetailViewModel(
+            testDispatcher,
             getCharacterByIdUseCase,
             mapper,
             savedStateHandle

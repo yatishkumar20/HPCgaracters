@@ -6,13 +6,15 @@ import javax.inject.Inject
 
 class CharacterItemMapper @Inject constructor() {
 
-    fun map(model: CharacterModel): CharacterItemUIModel =
-        with(model) {
-            CharacterItemUIModel(
-                name = name,
-                house = house,
-                id = id,
-                image = image
-            )
+    fun map(model: List<CharacterModel>): List<CharacterItemUIModel> =
+        model.map { domainModel ->
+            with(domainModel) {
+                CharacterItemUIModel(
+                    name = name,
+                    house = house,
+                    id = id,
+                    image = image
+                )
+            }
         }
 }

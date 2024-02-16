@@ -13,7 +13,6 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import retrofit2.Response
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HPCharactersRemoteDataSourceImplTest {
@@ -28,7 +27,6 @@ class HPCharactersRemoteDataSourceImplTest {
     fun setUp() {
         Dispatchers.setMain(dispatcher)
         dataSource = HPCharactersRemoteDataSourceImpl(
-            dispatcher,
             api,
             mapper
         )
@@ -36,20 +34,11 @@ class HPCharactersRemoteDataSourceImplTest {
 
     @Test
     fun `WHEN data source called THEN return list of characters`() = runTest {
-        coEvery { api.getAllCharacters() } returns Response.success(characterListDto)
+        coEvery { api.getAllCharacters() } returns characterListDto
 
         val result = dataSource.getCharacters()
 
         Assert.assertTrue(result is Result.Success)
-    }
-
-    @Test
-    fun `WHEN data source called THEN return empty data`() = runTest {
-        coEvery { api.getAllCharacters() } returns Response.success(null)
-
-        val result = dataSource.getCharacters()
-
-        Assert.assertTrue(result is Result.Error)
     }
 
     @Test
@@ -62,19 +51,10 @@ class HPCharactersRemoteDataSourceImplTest {
 
     @Test
     fun `GIVEN characterId WHEN data source called THEN return character details`() = runTest {
-        coEvery { api.getCharacter(CHARACTER_ID) } returns Response.success(characterListDto)
+        coEvery { api.getCharacter(CHARACTER_ID) } returns characterListDto
 
         val result = dataSource.getCharacter(CHARACTER_ID)
         Assert.assertTrue(result is Result.Success)
-    }
-
-    @Test
-    fun `GIVEN characterId WHEN data source called THEN return empty data`() = runTest {
-        coEvery { api.getCharacter(CHARACTER_ID) } returns Response.success(null)
-
-        val result = dataSource.getCharacter(CHARACTER_ID)
-
-        Assert.assertTrue(result is Result.Error)
     }
 
     @Test

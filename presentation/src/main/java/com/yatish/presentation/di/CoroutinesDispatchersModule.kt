@@ -1,4 +1,4 @@
-package com.yatish.data.di
+package com.yatish.presentation.di
 
 import dagger.Module
 import dagger.Provides

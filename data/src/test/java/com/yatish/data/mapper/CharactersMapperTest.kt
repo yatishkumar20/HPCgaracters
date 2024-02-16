@@ -12,11 +12,11 @@ class CharactersMapperTest {
 
     @Test
     fun `GIVEN Character dto as input WHEN mapper method called THEN return converted character domain model`() {
-        val dtoModel = characterModelDto
+        val dtoModel = listOf(characterModelDto)
 
         val mappedModel = mapper.map(dtoModel)
 
-        Assert.assertEquals(mappedModel, characterModel)
+        Assert.assertEquals(mappedModel, listOf(characterModel))
     }
 
 }

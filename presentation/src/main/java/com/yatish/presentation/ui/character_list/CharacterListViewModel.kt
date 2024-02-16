@@ -5,14 +5,17 @@ import androidx.lifecycle.viewModelScope
 import com.yatish.domain.Result
 import com.yatish.domain.usecase.GetAllCharactersUseCase
 import com.yatish.presentation.base.ViewIntent
+import com.yatish.presentation.di.IoDispatcher
 import com.yatish.presentation.mapper.CharacterItemMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CharacterListViewModel @Inject constructor(
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val getAllCharactersUseCase: GetAllCharactersUseCase,
     private val characterItemMapper: CharacterItemMapper
 ) : ViewModel(), CharacterListContract {
@@ -20,6 +23,7 @@ class CharacterListViewModel @Inject constructor(
     init {
         sendIntent(CharacterListContract.ListScreenViewIntent.LoadData)
     }
+
     override fun createInitialState(): CharacterListContract.ListScreenViewState =
         CharacterListContract.ListScreenViewState.Loading
 
@@ -42,11 +46,12 @@ class CharacterListViewModel @Inject constructor(
     }
 
     private fun fetchCharacterList() {
-        viewModelScope.launch {
-            when(val result = getAllCharactersUseCase()) {
+        viewModelScope.launch(dispatcher) {
+            when (val result = getAllCharactersUseCase()) {
                 is Result.Success -> {
-                    _state.emit(CharacterListContract.ListScreenViewState.Success(result.data.filter { it.house != "" }
-                        .map { item -> characterItemMapper.map(item) }))
+                    _state.emit(
+                        CharacterListContract.ListScreenViewState.Success(characterItemMapper.map(result.data))
+                    )
                 }
                 is Result.Error -> {
                     _state.emit(CharacterListContract.ListScreenViewState.Error(result.error))

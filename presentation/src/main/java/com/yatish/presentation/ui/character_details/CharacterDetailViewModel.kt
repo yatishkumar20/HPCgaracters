@@ -7,14 +7,17 @@ import com.yatish.domain.Result
 import com.yatish.domain.usecase.GetCharacterByIdUseCase
 import com.yatish.presentation.base.ViewIntent
 import com.yatish.presentation.constant.Constant.PARAM_CHARACTER_ID
+import com.yatish.presentation.di.IoDispatcher
 import com.yatish.presentation.mapper.CharacterDetailMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val getCharacterByIdUseCase: GetCharacterByIdUseCase,
     private val mapper: CharacterDetailMapper,
     savedStateHandle: SavedStateHandle
@@ -42,7 +45,7 @@ class CharacterDetailViewModel @Inject constructor(
     }
 
     private fun fetchCharacterById(id: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
 
             when(val result = getCharacterByIdUseCase(id)) {
                 is Result.Success -> {
